@@ -5,6 +5,8 @@ import view.myComponents.ButtonDefault;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class DeleteBook extends JPanel {
     private JLabel isbn;
@@ -28,6 +30,15 @@ public class DeleteBook extends JPanel {
         constraints.gridx = 1;
         inputISBN = new JTextField(20);
         add(inputISBN,constraints);
+        inputISBN.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)) {
+                    e.consume();
+                }
+            }
+        });
 
         constraints.gridx = 0;
         constraints.gridy = 1;

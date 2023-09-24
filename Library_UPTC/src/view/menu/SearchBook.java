@@ -53,7 +53,7 @@ public class SearchBook extends JPanel {
         selectCampus = new JLabel("Seleccione Campus");
         add(selectCampus,constraints);
         constraints.gridx = 1;
-        campus = new JComboBox();
+        campus = new JComboBox(new String[]{"Tunja", "Chiquinquira", "Sogamoso", "Duitama"});
         add(campus, constraints);
 
         constraints.gridx = 0;

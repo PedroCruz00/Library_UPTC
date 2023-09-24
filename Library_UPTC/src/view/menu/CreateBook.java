@@ -4,10 +4,7 @@ import view.myComponents.ButtonDefault;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public class CreateBook extends JPanel {
 
@@ -17,6 +14,10 @@ public class CreateBook extends JPanel {
     private JTextField inputISBN;
     private JLabel volume;
     private JTextField inputVolume;
+    private JLabel quantuty;
+    private JTextField inputQuantity;
+    private JLabel editorial;
+    private JTextField inputEditorial;
     private JLabel selectLibrary;
     private JComboBox library;
     private JLabel selectCampus;
@@ -26,7 +27,7 @@ public class CreateBook extends JPanel {
     private JLabel lastNameAutor;
     private JTextField inputLastNameAutor;
     private JLabel biographyAutor;
-    private JTextField inputBiographyAutor;
+    private JTextArea inputBiographyAutor;
     private ButtonDefault create;
 
     public CreateBook(ActionListener listener) {
@@ -96,10 +97,26 @@ public class CreateBook extends JPanel {
                 }
             }
         });
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        quantuty = new JLabel("cantidad del libros: ");
+        add(quantuty, constraints);
+        constraints.gridx = 1;
+        inputQuantity = new JTextField(20);
+        add(inputQuantity, constraints);
+        inputQuantity.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)) {
+                    e.consume();
+                }
+            }
+        });
 
 
         constraints.gridx = 0;
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         nameAutor = new JLabel("Nombre del autor: ");
         add(nameAutor, constraints);
         constraints.gridx = 1;
@@ -124,7 +141,7 @@ public class CreateBook extends JPanel {
         });
 
         constraints.gridx = 0;
-        constraints.gridy = 4;
+        constraints.gridy = 5;
         lastNameAutor = new JLabel("Apellido del autor: ");
         add(lastNameAutor, constraints);
         constraints.gridx = 1;
@@ -147,30 +164,72 @@ public class CreateBook extends JPanel {
             public void keyReleased(KeyEvent e) {
             }
         });
-
-        constraints.gridx = 0;
-        constraints.gridy = 5;
-        biographyAutor = new JLabel("Biografia del autor: ");
-        constraints.gridx = 1;
-        inputBiographyAutor = new JTextField(20);
-
         constraints.gridx = 0;
         constraints.gridy = 6;
-        selectCampus = new JLabel("Seleccione la sede");
-        add(selectCampus, constraints);
+        editorial = new JLabel("Editorial: ");
+        add(editorial, constraints);
         constraints.gridx = 1;
-        campus = new JComboBox();
-        add(campus, constraints);
+        inputEditorial = new JTextField(20);
+        add(inputEditorial, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 7;
-        selectLibrary = new JLabel("Seleccione el Campues");
+        biographyAutor = new JLabel("Biografia del autor: ");
+        add(biographyAutor, constraints);
+        constraints.gridx = 1;
+        inputBiographyAutor = new JTextArea(5, 20);
+        add(inputBiographyAutor, constraints);
+
+
+        constraints.gridx = 0;
+        constraints.gridy = 8;
+        selectCampus = new JLabel("Seleccione la sede");
+        add(selectCampus, constraints);
+        constraints.gridx = 1;
+        campus = new JComboBox(new String[]{"Tunja", "Chiquinquira", "Sogamoso", "Duitama"});
+        add(campus, constraints);
+
+        String[][]subcCampus = {
+                {
+                "Ciencias Agropecuarias",
+                "Ciencias",
+                "Ciencias de la Educación",
+                "Ciencias Económicas y Administrativas",
+                "Ciencias de la Salud",
+                "Derecho y Ciencias Sociales",
+                "Ingeniería",
+                "Facultad Estudios a Distancia"
+        }, {
+                "Ciencias Económicas y Administrativas",
+                "Ciencias de la Educación"
+        },{
+                "Ciencias Económicas y Administrativas",
+                "Ingeniería"
+        },{
+                "Ciencias Económicas y Administrativas",
+                "Ingeniería",
+                "Ciencias de la Educación"
+        }
+        };
+
+        constraints.gridx = 0;
+        constraints.gridy = 9;
+        campus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedIndex = campus.getSelectedIndex();
+                library.setModel(new DefaultComboBoxModel<>(subcCampus[selectedIndex]));
+            }
+        });
+
+
+        selectLibrary = new JLabel("Seleccione el Campus");
         add(selectLibrary, constraints);
         constraints.gridx = 1;
         library = new JComboBox();
         add(library, constraints);
 
-        constraints.gridy = 8;
+        constraints.gridy = 10;
         constraints.gridwidth = 2;
 
         create = new ButtonDefault("Crear Libro");
@@ -178,5 +237,66 @@ public class CreateBook extends JPanel {
         create.addActionListener(listener);
         add(create, constraints);
 
+        create.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String titleText = inputTitle.getText().trim();
+                String ISBNText = inputISBN.getText().trim();
+                String volumeText = inputVolume.getText().trim();
+                String nameAutorText = inputNameAutor.getText().trim();
+                String lastNameAutorText = inputLastNameAutor.getText().trim();
+                String biographyAutorText = inputBiographyAutor.getText().trim();
+
+                if (titleText.isEmpty() || ISBNText.isEmpty() || volumeText.isEmpty() ||
+                        nameAutorText.isEmpty() || lastNameAutorText.isEmpty() || biographyAutorText.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
     }
+
+    public JTextField getInputTitle() {
+        return inputTitle;
+    }
+
+    public JTextField getInputISBN() {
+        return inputISBN;
+    }
+
+    public JTextField getInputVolume() {
+        return inputVolume;
+    }
+
+    public JTextField getInputLastNameAutor() {
+        return inputLastNameAutor;
+    }
+
+    public JTextField getInputNameAutor() {
+        return inputNameAutor;
+    }
+
+    public JTextArea getInputBiographyAutor() {
+        return inputBiographyAutor;
+    }
+
+
+
+    public JComboBox getLibrary() {
+        return library;
+    }
+
+    public JComboBox getCampus() {
+        return campus;
+    }
+
+    public JTextField getInputQuantity() {
+        return inputQuantity;
+    }
+
+    public JTextField getInputEditorial() {
+        return inputEditorial;
+    }
+
+
 }

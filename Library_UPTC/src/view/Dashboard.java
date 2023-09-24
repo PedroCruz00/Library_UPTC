@@ -63,4 +63,11 @@ public class Dashboard extends JFrame {
         searchBook.setVisible(false);
     }
 
+    public CreateBook getCreateBook() {
+        return createBook;
+    }
+
+    public ListBooks getListBooks() {
+        return listBooks;
+    }
 }

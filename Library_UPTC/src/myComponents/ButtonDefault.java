@@ -14,7 +14,7 @@ public class ButtonDefault extends JFrame {
         button1.setBounds(300, 250, 100, 30);
 
 
-        button1.setBackground(new Color(204, 200, 170));
+        button1.setBackground(new Color(25, 23, 23));
         button1.setForeground(Color.black);
         button1.setFont(new Font("Arial", Font.BOLD, 14));
 

@@ -22,7 +22,7 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
         this.comparator = Objects.requireNonNull(comparator, "comparator can't be null");
     }
 
-    
+
     public static <T extends Comparable<? super T>> AVLTree<T> of() {
         return new AVLTree<>(Comparator.naturalOrder());
     }
@@ -43,26 +43,26 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
         displayTree(root, 0);
     }
 
-    
+
     private void displayTree(Node<T> node, int level) {
         if (node != null) {
             displayTree(node.right, level + 1);
             for (int i = 0; i < level; i++) {
-                System.out.print("    "); 
+                System.out.print("    ");
             }
-            System.out.println(node.key); 
+            System.out.println(node.key);
             displayTree(node.left, level + 1);
         }
     }
 
     @SafeVarargs
-	public static <T extends Comparable<? super T>> AVLTree<T> of(T... elements) {
+    public static <T extends Comparable<? super T>> AVLTree<T> of(T... elements) {
         return of(Comparator.naturalOrder(), elements);
     }
 
-    
+
     @SafeVarargs
-	public static <T extends Comparable<? super T>> AVLTree<T> of(Comparator<? super T> comparator,
+    public static <T extends Comparable<? super T>> AVLTree<T> of(Comparator<? super T> comparator,
                                                                   T... elements) {
         AVLTree<T> set = new AVLTree<T>(comparator);
         Collections.addAll(set, elements);
@@ -170,7 +170,7 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
         y.left = x;
     }
 
-    
+
     private void swapSubTreeRoot(Node<T> oldNode, Node<T> newNode) {
         Node<T> parent = oldNode.parent;
         newNode.parent = parent;
@@ -188,13 +188,13 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
     private void turnRightOnInsert(Node<T> A) {
         A.height--;
         Node<T> B = A.left;
-        if (balance(B) == 1) {     
+        if (balance(B) == 1) {
             Node<T> C = B.right;
             C.height = B.height--;
             swapSubTreeRoot(A, C);
             swapLinksLeft(B, C);
             swapLinksRight(A, C);
-        } else {                   
+        } else {
             swapSubTreeRoot(A, B);
             swapLinksRight(A, B);
         }
@@ -203,13 +203,13 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
     private void turnLeftOnInsert(Node<T> A) {
         A.height--;
         Node<T> B = A.right;
-        if (balance(B) == -1) {    
+        if (balance(B) == -1) {
             Node<T> C = B.left;
             C.height = B.height--;
             swapSubTreeRoot(A, C);
             swapLinksRight(B, C);
             swapLinksLeft(A, C);
-        } else {                   
+        } else {
             swapSubTreeRoot(A, B);
             swapLinksLeft(A, B);
         }
@@ -218,7 +218,7 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
     private Node<T> turnRightOnDelete(Node<T> A) {
         Node<T> B = A.left;
         switch (balance(B)) {
-            case 1:                
+            case 1:
                 A.height -= 2;
                 Node<T> C = B.right;
                 C.height = B.height--;
@@ -226,12 +226,12 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
                 swapLinksLeft(B, C);
                 swapLinksRight(A, C);
                 return C.parent;
-            case -1:               
+            case -1:
                 A.height -= 2;
                 swapSubTreeRoot(A, B);
                 swapLinksRight(A, B);
                 return B.parent;
-            case 0:                 
+            case 0:
                 A.height--;
                 B.height++;
                 swapSubTreeRoot(A, B);
@@ -244,7 +244,7 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
     private Node<T> turnLeftOnDelete(Node<T> A) {
         Node<T> B = A.right;
         switch (balance(B)) {
-            case -1:               
+            case -1:
                 A.height -= 2;
                 Node<T> C = B.left;
                 C.height = B.height--;
@@ -252,12 +252,12 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
                 swapLinksRight(B, C);
                 swapLinksLeft(A, C);
                 return C.parent;
-            case 1:                
+            case 1:
                 A.height -= 2;
                 swapSubTreeRoot(A, B);
                 swapLinksLeft(A, B);
                 return B.parent;
-            case 0:                
+            case 0:
                 A.height--;
                 B.height++;
                 swapSubTreeRoot(A, B);
@@ -395,9 +395,9 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
         size--;
     }
 
-	@Override
-	public Iterator<T> iterator() {
-		return null;
-	}
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
 
 }

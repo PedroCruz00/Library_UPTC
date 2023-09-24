@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Library {
     private AVLTree<Book> libraryTree;
-
     public Library() {
         libraryTree = AVLTree.of();
     }
@@ -55,6 +54,5 @@ public class Library {
         }
     }
 }
-
 
 

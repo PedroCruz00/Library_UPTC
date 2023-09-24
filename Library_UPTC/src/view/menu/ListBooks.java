@@ -10,20 +10,23 @@ public class ListBooks extends JPanel {
     private String[]column;
 
     public ListBooks() {
-        //Object[][] data, String[] column
-        this.data = new Object[][]{};
-        this.column = new  String[]{"Titulo","Nombre","ISBN","Sede"};
+        setLayout(new GridLayout());
+        setBackground(new Color(241, 239, 239));
+        this.column = new  String[]{"Titulo","Autor","ISBN","Sede"};
+        this.data = new Object[][]{new Object[]{"Cien años de soledad","Gabriel Garcia Marquez",412, "Duitama"},
+                {"Cien años de soledad","Gabriel Garcia Marquez",412, "Duitama"}
+        };
+
         initComponents();
     }
 
-
     public void initComponents(){
         table = new JTable(data, column);
-        table.setBackground(new Color(84, 94, 103));
+        table.setBackground(new Color(25, 23, 23));
         table.setFont(new Font(Font.DIALOG, Font.BOLD, 10));
         table.setForeground(Color.WHITE);
-        this.add(table);
-
+        JScrollPane scrollPane = new JScrollPane(table);
+        this.add(scrollPane);
     }
 
 }

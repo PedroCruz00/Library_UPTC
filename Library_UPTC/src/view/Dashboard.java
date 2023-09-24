@@ -19,6 +19,7 @@ public class Dashboard extends JFrame {
         dimension = toolkit.getScreenSize();
         initPanels(listener);
         setSize(dimension);
+        setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -28,8 +29,8 @@ public class Dashboard extends JFrame {
         createBook = new CreateBook(listener);
         getContentPane().add(createBook);
 
-        deleteBook = new DeleteBook();
-        searchBook = new SearchBook();
+        deleteBook = new DeleteBook(listener);
+        searchBook = new SearchBook(listener);
         listBooks = new ListBooks();
 
     }
@@ -48,7 +49,7 @@ public class Dashboard extends JFrame {
         listBooks.setVisible(false);
 
     } public void visibleListMenu(){
-        getContentPane().add(searchBook);
+        getContentPane().add(listBooks);
         listBooks.setVisible(true);
         createBook.setVisible(false);
         deleteBook.setVisible(false);

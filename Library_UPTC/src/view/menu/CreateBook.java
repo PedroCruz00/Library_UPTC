@@ -26,7 +26,7 @@ public class CreateBook extends JPanel {
     private JLabel lastNameAutor;
     private JTextField inputLastNameAutor;
     private JLabel biographyAutor;
-    private JTextField inputBiographyAutor;
+    private JTextArea inputBiographyAutor;
     private ButtonDefault create;
 
     public CreateBook(ActionListener listener) {
@@ -151,8 +151,10 @@ public class CreateBook extends JPanel {
         constraints.gridx = 0;
         constraints.gridy = 5;
         biographyAutor = new JLabel("Biografia del autor: ");
+        add(biographyAutor,constraints);
         constraints.gridx = 1;
-        inputBiographyAutor = new JTextField(20);
+        inputBiographyAutor = new JTextArea(5,20);
+        add(inputBiographyAutor,constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 6;

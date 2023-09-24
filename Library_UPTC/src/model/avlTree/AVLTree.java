@@ -9,6 +9,14 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
     private Node<T> root;
     private int size;
 
+    public Node<T> getRoot() {
+        return root;
+    }
+
+    public void setRoot(Node<T> root) {
+        this.root = root;
+    }
+
     private AVLTree(Comparator<? super T> comparator) {
         this.size = 0;
         this.comparator = Objects.requireNonNull(comparator, "comparator can't be null");
@@ -297,7 +305,7 @@ public final class AVLTree<T extends Comparable<? super T>>extends AbstractColle
     }
 
 
-    private Node<T> find(Object key) {
+    public Node<T> find(Object key) {
         @SuppressWarnings("unchecked")
         T k = (T) key;
         Comparator<? super T> cpr = comparator;

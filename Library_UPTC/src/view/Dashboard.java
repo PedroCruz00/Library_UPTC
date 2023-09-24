@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Dashboard extends JFrame {
-
     private Toolkit toolkit;
     private Dimension dimension;
     public Dashboard(){

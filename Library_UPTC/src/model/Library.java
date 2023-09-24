@@ -26,10 +26,12 @@ public class Library {
     }
 
     public Book findBookByISBN(String codeISBN) {
-        Book searchBook = new Book(codeISBN, "", 0, "", null, null, 0);
+        Book searchBook = new Book();
+        searchBook.setCodeISBN(codeISBN);
         Node<Book> resultNode = libraryTree.find(searchBook);
         return resultNode != null ? resultNode.getKey() : null;
     }
+
 
     public boolean containsBook(Book book) {
         return libraryTree.contains(book);

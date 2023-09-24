@@ -5,12 +5,12 @@ public class Book implements Comparable<Book> {
     private String title;
     private int volume;
     private String editorial;
-    private Campus campus;
-    private SubCampus subCampus;
+    private String campus;
+    private String subCampus;
     private Autor infoAutor;
     private int quantity;
 
-    public Book(String codeISBN, String title, int volume, String editorial, Campus campus, SubCampus subCampus, Autor infoAutor, int quantity) {
+    public Book(String codeISBN, String title, int volume, String editorial, String campus, String subCampus, Autor infoAutor, int quantity) {
         this.codeISBN = codeISBN;
         this.title = title;
         this.volume = volume;
@@ -45,11 +45,11 @@ public class Book implements Comparable<Book> {
         return editorial;
     }
 
-    public Campus getCampus() {
+    public String getCampus() {
         return campus;
     }
 
-    public SubCampus getSubCampus() {
+    public String getSubCampus() {
         return subCampus;
     }
 
@@ -70,5 +70,20 @@ public class Book implements Comparable<Book> {
     @Override
     public int compareTo(Book o) {
         return this.codeISBN.compareTo(o.codeISBN);
+    }@Override
+    public String toString() {
+        return "Book{" +
+                "codeISBN='" + codeISBN + '\'' +
+                ", title='" + title + '\'' +
+                ", volume=" + volume +
+                ", editorial='" + editorial + '\'' +
+                ", campus='" + campus + '\'' +
+                ", subCampus='" + subCampus + '\'' +
+                ", infoAutor=" + infoAutor +
+                ", quantity=" + quantity +
+                '}';
     }
+
+
 }
+

@@ -1,5 +1,7 @@
 package view.menu;
 
+import model.Autor;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,12 +14,13 @@ public class ListBooks extends JPanel {
     public ListBooks() {
         setLayout(new GridLayout());
         setBackground(new Color(241, 239, 239));
-        this.column = new  String[]{"Titulo","Autor","ISBN","Sede"};
-        this.data = new Object[][]{new Object[]{"Cien años de soledad","Gabriel Garcia Marquez",412, "Duitama"},
-                {"Cien años de soledad","Gabriel Garcia Marquez",412, "Duitama"}
-        };
-
+        this.column = new  String[]{ "codeISBN", "title",  "volume",  "editorial", "campus",  "subCampus", "infoAutor", "quantity"};
+        this.data = new Object[][]{};
         initComponents();
+    }
+
+    public void setData(Object[][] data) {
+        this.data = data;
     }
 
     public void initComponents(){

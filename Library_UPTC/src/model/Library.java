@@ -42,10 +42,29 @@ public class Library {
     }
 
 
-    public List<Book> listAllBooks() {
+    public Object[][]  listAllBooks() {
         List<Book> bookList = new ArrayList<>();
         inOrderTraversal(libraryTree.getRoot(), bookList);
-        return bookList;
+        int numRows = bookList.size();
+        int numCols = 8;
+
+        if (bookList == null) {
+            return new Object[][]{};
+        }
+        Object[][] result = new Object[numRows][numCols];
+
+        for (int i = 0; i < numRows; i++) {
+            Book book = bookList.get(i);
+            result[i][0] = book.getCodeISBN();
+            result[i][1] = book.getTitle();
+            result[i][2] = book.getVolume();
+            result[i][3] = book.getEditorial();
+            result[i][4] = book.getCampus();
+            result[i][5] = book.getSubCampus();
+            result[i][6] = book.getInfoAutor();
+            result[i][7] = book.getQuantity();
+        }
+        return result;
     }
 
     private void inOrderTraversal(Node<Book> node, List<Book> bookList) {

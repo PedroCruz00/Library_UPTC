@@ -4,10 +4,7 @@ import view.myComponents.ButtonDefault;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public class CreateBook extends JPanel {
 
@@ -177,6 +174,23 @@ public class CreateBook extends JPanel {
         create.setActionCommand("create");
         create.addActionListener(listener);
         add(create, constraints);
+
+        create.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String titleText = inputTitle.getText().trim();
+                String ISBNText = inputISBN.getText().trim();
+                String volumeText = inputVolume.getText().trim();
+                String nameAutorText = inputNameAutor.getText().trim();
+                String lastNameAutorText = inputLastNameAutor.getText().trim();
+                String biographyAutorText = inputBiographyAutor.getText().trim();
+
+                if (titleText.isEmpty() || ISBNText.isEmpty() || volumeText.isEmpty() ||
+                        nameAutorText.isEmpty() || lastNameAutorText.isEmpty() || biographyAutorText.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
 
     }
 }

@@ -10,6 +10,7 @@ public class MyMenuItem extends JMenu implements MouseListener{
     private Toolkit toolkit;
     public MyMenuItem(String text){
         setText(text);
+        this.setHorizontalTextPosition(0);
         toolkit = Toolkit.getDefaultToolkit();
         dimension = toolkit.getScreenSize();
         this.setForeground(Color.white);
@@ -17,7 +18,7 @@ public class MyMenuItem extends JMenu implements MouseListener{
         setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         setPreferredSize(new Dimension(dimension.width/4,40));
         addMouseListener(this);
-        setColor(Color.GRAY);
+        setColor(new Color(25, 23, 23));
     }
 
 
@@ -40,17 +41,17 @@ public class MyMenuItem extends JMenu implements MouseListener{
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        setColor(Color.GRAY);
+        setColor(new Color(25, 23, 23));
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        setColor(Color.darkGray);
+        setColor( Color.GRAY);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        setColor(Color.GRAY);
+        setColor(new Color(25, 23, 23));
     }
 
 }

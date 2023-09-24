@@ -1,5 +1,7 @@
 package view.menu;
 
+import view.myComponents.ButtonDefault;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -12,7 +14,9 @@ public class CreateBook extends JPanel {
     private JTextField inputISBN;
     private JLabel volume;
     private JTextField inputVolume;
+    private JLabel selectLibrary;
     private JComboBox library;
+    private JLabel selectCampus;
     private JComboBox campus;
     private JLabel nameAutor;
     private JTextField inputNameAutor;
@@ -20,16 +24,18 @@ public class CreateBook extends JPanel {
     private JTextField inputLastNameAutor;
     private JLabel biographyAutor;
     private JTextField inputBiographyAutor;
-    private JButton create;
+    private ButtonDefault create;
 
     public CreateBook(ActionListener listener) {
+        setBackground(new Color(241, 239, 239));
         initComponents(listener);
     }
 
     public void initComponents(ActionListener listener){
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.insets = new Insets(10,10,10,10);
         title = new JLabel("Ingrese el titulo del libro: ");
         add(title,constraints);
         constraints.gridx =1;
@@ -76,19 +82,26 @@ public class CreateBook extends JPanel {
         constraints.gridx = 1;
         inputBiographyAutor = new JTextField(20);
 
-        constraints.gridy = 6;
         constraints.gridx = 0;
-        library = new JComboBox();
-        add(library,constraints);
-
-        constraints.gridy = 7;
+        constraints.gridy = 6;
+        selectCampus = new JLabel("Seleccione la sede");
+        add(selectCampus,constraints);
+        constraints.gridx = 1;
         campus = new JComboBox();
         add(campus,constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 7;
+        selectLibrary = new JLabel("Seleccione el Campues");
+        add(selectLibrary,constraints);
+        constraints.gridx = 1;
+        library = new JComboBox();
+        add(library,constraints);
 
         constraints.gridy = 8;
         constraints.gridwidth = 2;
 
-        create = new JButton("Crear Libro");
+        create = new ButtonDefault("Crear Libro");
         create.setActionCommand("create");
         create.addActionListener(listener);
         add(create,constraints);
